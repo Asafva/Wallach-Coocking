@@ -1,0 +1,9 @@
+.grid {
+    margin-top: 0;
+    padding: 1em;
+    gap: 1em;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    background-color: whitesmoke;
+}

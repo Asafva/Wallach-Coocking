@@ -1,0 +1,110 @@
+.card {
+    /* border-radius: 20px; */
+    /* border-radius: 65px; */
+    /* background: #ad2121; */
+    padding: 20px;
+    background-color: whitesmoke;
+    position: relative;
+    margin: 15px;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    max-height: 450px;
+    padding: 10px 20px;
+    min-width: none;
+    display: inline-table;
+    text-align: center;
+    flex-flow: column;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+
+
+.card-details {
+    color: black;
+    height: 100%;
+    place-content: center;
+}
+
+.card-button {
+    transform: translate(-50%, 125%);
+    width: 55%;
+    border-radius: 1rem;
+    border: none;
+    background-color: black;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    font-size: 16px;
+    justify-content: center;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+}
+
+.text-description {
+    text-align: left;
+    color: rgb(134, 134, 134);
+    text-align: right;
+
+}
+
+/*Text*/
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Hover*/
+.card:hover {
+    border-color: white;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+}
+
+.recipieImg {
+    max-width: 100%;
+    display: block;
+    height: auto;
+
+}
+
+.deleteButton {
+    margin-left: 200px;
+    margin-bottom: 5px;
+}
+
+.buttons {
+    line-height: 12px;
+    font-size: 5px;
+    /* font-family: tahoma; */
+    /* margin-top: 1px;  */
+    /* margin-right: 12px; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: whitesmoke
+}
