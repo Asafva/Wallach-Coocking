@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import './AddRecipe.css'
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from 'react-router-dom';
+import { userLoggedin } from '../Global';
 
 
 export const AddRecipe = () => {
@@ -21,7 +22,6 @@ export const AddRecipe = () => {
     const handleInput = (event) => {
         setPost({ ...post, [event.target.name]: event.target.value })
         console.log(event.target.value)
-
     }
 
     function handleSubmit(event) {
@@ -41,6 +41,10 @@ export const AddRecipe = () => {
             });
         event.preventDefault()
     }
+
+    useEffect(() => {
+        userLoggedin()
+    }, [])
 
     return (
         <div className='formSubmit'>

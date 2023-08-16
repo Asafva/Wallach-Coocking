@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './RecipeInfo.css'
+import { userLoggedin } from '../Global';
 
 
 const RecipeInfo = () => {
@@ -20,6 +21,7 @@ const RecipeInfo = () => {
                 })
 
         }
+        userLoggedin()
     }, [id]);
 
 

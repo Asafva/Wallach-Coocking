@@ -1,5 +1,6 @@
 .grid {
     margin-top: 0;
+    height: 100%;
     padding: 1em;
     gap: 1em;
     flex-wrap: wrap;

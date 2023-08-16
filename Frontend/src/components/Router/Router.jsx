@@ -26,7 +26,6 @@ export default function Router() {
                 <Route path="/update/:id" element={<EditRecipe />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-
                 <Route path="*" element={<notFound />} />
             </Routes>
             <Footer />

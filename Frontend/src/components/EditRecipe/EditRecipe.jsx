@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import './EditRecipe.css'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import { userLoggedin } from '../Global';
 
 
 
@@ -21,6 +22,10 @@ export const EditRecipe = () => {
     const { id } = useParams()
     const data = post;
     const navigate = useNavigate();
+
+    useEffect(() => {
+        userLoggedin()
+    }, [])
 
 
     useEffect(() => {

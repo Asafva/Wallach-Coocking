@@ -39,9 +39,8 @@ class Card extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='cardContainer'>
                 {this.state.posts.map((post) => (
-
                     <div className="card" key={post._id}>
                         <div className='buttons'>
                             <NavLink to={"/update/" + post._id}>
@@ -58,8 +57,6 @@ class Card extends React.Component {
                                 <button className="card-button" >More info</button>
                                 <br />
                             </NavLink>
-
-
                         </div>
                     </div>
                 ))}
