@@ -13,14 +13,12 @@ export const Login = () => {
     const userLoggedin = async () => {
         const isLoggedIn = localStorage.getItem('user')
         if (isLoggedIn) {
-            console.log("test");
             alert("User logged in")
             navigate('/');
         }
         if (!isLoggedIn) {
             console.log("Please Login");
         }
-
     }
 
 

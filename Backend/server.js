@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-var cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 5000
@@ -8,10 +8,15 @@ const port = process.env.PORT || 5000
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+const corsOptions = {
+
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 
-app.get('/', (req, res) => { res.send('Data is Working...') })
+app.get('/', (req, res) => { res.send('Database is Working...') })
 app.use("/products", require("./routes/productRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 

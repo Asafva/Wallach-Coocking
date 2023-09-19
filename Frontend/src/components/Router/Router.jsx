@@ -9,6 +9,8 @@ import RecipeInfo from '../RecipeInfo/RecipeInfo';
 import { EditRecipe } from '../EditRecipe/EditRecipe';
 import { Login } from '../UserAuth/LoginForm/Login';
 import { Register } from '../UserAuth/RegisterForm/Register';
+import Admin from '../UserAuth/AdminPage/Admin';
+import { EditUser } from '../UserAuth/AdminPage/EditUser/EditUser';
 
 
 
@@ -26,6 +28,8 @@ export default function Router() {
                 <Route path="/update/:id" element={<EditRecipe />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/update-user/:id" element={<EditUser />} />
                 <Route path="*" element={<notFound />} />
             </Routes>
             <Footer />

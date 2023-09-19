@@ -11,25 +11,22 @@ import axios from 'axios';
 function Header() {
   const [currentUser, setCurrentUser] = useState([])
   const token = localStorage.getItem("user").replace(/['"]+/g, '')
+  // const token = localStorage.getItem("user")
   const navigate = useNavigate();
 
 
-
-
-  const showCurrentUser = () => {
-    axios.get('http://localhost:5001/users/current', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((result) => {
-        console.log(result);
-        setCurrentUser(result.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-
-
+  // const showCurrentUser = () => {
+  //   axios.get('http://localhost:5001/users/current', {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then((result) => {
+  //       // console.log(result.data);
+  //       setCurrentUser(result.data)
+  //     })
+  //     .catch((error) => {
+  //       console.error(error)
+  //     })
+  // }
 
   const logOut = () => {
     localStorage.setItem("user", '');
@@ -37,11 +34,24 @@ function Header() {
     window.location.reload();
   }
 
+  const adminPage = () => {
+    navigate("/admin");
+    window.location.reload();
+  }
+
   useEffect(() => {
-    showCurrentUser()
-
-
+    axios.get('http://localhost:5001/users/current', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((result) => {
+        // console.log(result.data);
+        setCurrentUser(result.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [])
+
 
   return (
     <div className='Header'>
@@ -60,14 +70,22 @@ function Header() {
               <Nav.Link href="about">About</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="add">
-                ➕
-              </Nav.Link>
+              {currentUser.isAdmin === true &&
+                <Nav.Link href="add" >
+                  ➕
+                </Nav.Link>
+
+              }
+
               <NavDropdown title={"👤 " + currentUser.username}>
 
                 <div><u>Email:</u> {currentUser.email}</div>
                 <br />
                 <button onClick={logOut} >Logout</button>
+                <hr />
+                <button onClick={adminPage}>
+                  Admin
+                </button>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

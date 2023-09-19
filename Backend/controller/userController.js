@@ -25,7 +25,7 @@ const showUserID = asyncHandler(async (req, res) => {
 
 //REGISTER USER 
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, isAdmin } = req.body;
     try {
         const emailAvailable = await User.findOne({ email });
         const usernameAvailable = await User.findOne({ username });
@@ -48,14 +48,16 @@ const registerUser = asyncHandler(async (req, res) => {
     const newUser = await User.create({
         username,
         email,
-        password: hashPassword
+        password: hashPassword,
+        isAdmin: false
+
     });
     if (!newUser) {
         res.status(400);
         throw new Error("All fields are mandatory")
     }
     if (newUser) {
-        res.status(201).json({ _id: newUser.id, Username: newUser.username, Email: newUser.email, Password: newUser.password })
+        res.status(201).json({ _id: newUser.id, Username: newUser.username, Email: newUser.email, Password: newUser.password, isAdmin: newUser.isAdmin })
     } else {
         res.status(400);
         throw new Error("User data is not valid!")
@@ -85,15 +87,17 @@ const loginUser = asyncHandler(async (req, res) => {
                         username: user.username,
                         email: user.email,
                         id: user.id,
+                        isAdmin: user.isAdmin
                     },
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: "150m" }
+                { expiresIn: "15m" }
             )
 
             res.status(200).json(accessToken);
+            res.status(200).json(user.id);
             console.log("User LOGGEDIN");
-            console.log();
+            console.log(`Token: ${accessToken} ID: ${user.id}`);
         } else {
             res.status(401)
             throw new Error("email or password is not valid");
@@ -103,10 +107,9 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 
-
-
 const currentUser = asyncHandler(async (req, res) => {
     res.json(req.user);
+    console.log(req.user);
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
@@ -121,6 +124,22 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 });
 
+const editUser = asyncHandler((async (req, res) => {
+    try {
+        const { id } = req.params
+        const user = await User.findByIdAndUpdate(id, req.body);
+        if (!user) {
+            return res.status(404).json({ message: `cannot find ID:${id}` });
+        }
+        const updatedProduct = await User.findById(id);
+        res.status(200).json(updatedProduct)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ message: error.message })
+    }
+}));
+
+
 
 
 module.exports = {
@@ -129,5 +148,6 @@ module.exports = {
     registerUser,
     loginUser,
     currentUser,
-    deleteUser
+    deleteUser,
+    editUser
 }
